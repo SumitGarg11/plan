@@ -31,6 +31,9 @@
 | System design | **System Design Interview Vol 1 & 2** — Alex Xu | Book |
 | System design (free) | **github.com/donnemartin/system-design-primer** | Repo |
 | LLD / patterns | **Refactoring Guru** (refactoring.guru) | Site |
+| Reliability / SRE | **Google SRE Book** (sre.google/books — free online) | Book |
+| Backend patterns | **microservices.io** (Chris Richardson) | Site |
+| AWS reliability | **Amazon Builders' Library** (retries, backoff) | Site |
 
 ---
 
@@ -280,6 +283,10 @@
 | Concurrency control | 2PL, MVCC | ★★★★ | P0 | CMU 15-445 |
 | Recovery | WAL, ARIES | ★★★★ | P2 | CMU 15-445 |
 | Isolation levels | anomalies | ★★★ | P0 | DDIA Ch.7 |
+| Deadlocks | detection, prevention, ordering | ★★★ | P0 | CMU 15-445 |
+| Connection pooling | pool sizing, why it matters | ★★★ | P0 | Backend roadmap 2026 |
+| Query optimization (practical) | EXPLAIN, N+1 problem | ★★★ | P0 | use-the-index-luke.com |
+| Sharding & partitioning | at DB level | ★★★★ | P1 | DDIA Ch.6 |
 
 ## 3.4 Linux
 
@@ -298,19 +305,39 @@
 # PART 4 — BACKEND & DISTRIBUTED SYSTEMS
 *Core book: Designing Data-Intensive Applications (DDIA) — read cover to cover*
 
-## 4.1 API & Service Design
+## 4.1 HTTP & Web Protocols (foundation — know this cold)
+
+| Topic | Subtopic | Diff | Pri | Resource |
+|---|---|---|---|---|
+| HTTP verbs | GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS | ★ | P0 | MDN |
+| Idempotency & safety | which verbs are idempotent/safe | ★★ | P0 | MDN / Stripe blog |
+| Status codes | 2xx, 3xx, 4xx, 5xx (know 200/201/204/301/400/401/403/404/409/422/429/500/502/503) | ★★ | P0 | MDN |
+| Headers | content-type, cache-control, auth, cookies, CORS | ★★ | P0 | MDN |
+| Request/response lifecycle | how a request travels client→server→DB→back | ★★ | P0 | MDN |
+| Connection management | keep-alive, connection pooling | ★★★ | P1 | HTTP roadmap 2026 |
+| HTTP/1.1 vs HTTP/2 | multiplexing, head-of-line blocking | ★★★ | P1 | web.dev |
+| HTTP/3 (QUIC) | UDP-based, latency reduction | ★★★ | P2 | web.dev |
+| Cookies & sessions | secure, httpOnly, sameSite | ★★ | P0 | MDN |
+| CORS | preflight, allowed origins | ★★★ | P1 | MDN |
+| WebSockets vs SSE vs polling | when to use each | ★★★ | P1 | MDN |
+
+## 4.2 API & Service Design
 
 | Topic | Subtopic | Diff | Pri | Resource |
 |---|---|---|---|---|
 | REST | resources, verbs, status | ★★ | P0 | MDN / Roy Fielding |
-| API versioning | | ★★ | P1 | System Design Primer |
+| API versioning | URL vs header versioning | ★★ | P1 | System Design Primer |
+| Pagination | offset vs cursor-based | ★★★ | P0 | Backend roadmap 2026 |
+| Filtering & sorting | query params, avoid slow endpoints | ★★ | P0 | Backend roadmap 2026 |
+| Error format | consistent error envelopes | ★★ | P0 | Stripe API docs |
+| Webhooks | event delivery, retries, signature verify | ★★★ | P1 | Stripe docs |
 | gRPC / protobuf | | ★★★ | P1 | grpc.io |
 | GraphQL | | ★★★ | P2 | graphql.org |
-| Idempotency | keys, retries | ★★★ | P0 | Stripe blog |
+| Idempotency | keys, retries, safe replays | ★★★ | P0 | Stripe blog |
 | Rate limiting | token/leaky bucket | ★★★ | P0 | System Design Primer |
-| Auth | JWT, OAuth2, sessions | ★★★ | P0 | jwt.io / oauth.net |
+| Pagination at scale | keyset pagination | ★★★ | P1 | Backend roadmap 2026 |
 
-## 4.2 Caching
+## 4.3 Caching
 
 | Topic | Subtopic | Diff | Pri | Resource |
 |---|---|---|---|---|
@@ -319,7 +346,7 @@
 | Cache invalidation | | ★★★★ | P0 | DDIA |
 | CDN | edge caching | ★★ | P1 | System Design Primer |
 
-## 4.3 Redis *(redis.io)*
+## 4.4 Redis *(redis.io)*
 
 | Topic | Subtopic | Diff | Pri | Resource |
 |---|---|---|---|---|
@@ -331,7 +358,7 @@
 | Cluster | sharding, replication | ★★★★ | P1 | redis.io |
 | Streams | | ★★★ | P2 | redis.io |
 
-## 4.4 Kafka *(kafka.apache.org + Confluent docs)*
+## 4.5 Kafka *(kafka.apache.org + Confluent docs)*
 
 | Topic | Subtopic | Diff | Pri | Resource |
 |---|---|---|---|---|
@@ -343,7 +370,7 @@
 | Ordering | per-partition | ★★★ | P0 | Confluent docs |
 | Streams / Connect | | ★★★★ | P2 | Confluent docs |
 
-## 4.5 Distributed Systems *(DDIA)*
+## 4.6 Distributed Systems *(DDIA)*
 
 | Topic | Subtopic | Diff | Pri | Resource |
 |---|---|---|---|---|
@@ -358,7 +385,7 @@
 | Failure detection | heartbeats, gossip | ★★★ | P2 | DDIA |
 | Message queues | delivery, DLQ, backpressure | ★★★ | P0 | DDIA Ch.11 |
 
-## 4.6 Docker · Kubernetes · Cloud
+## 4.7 Docker · Kubernetes · Cloud
 
 | Topic | Subtopic | Diff | Pri | Resource |
 |---|---|---|---|---|
@@ -370,7 +397,7 @@
 | Cloud basics | compute, storage, IAM | ★★★ | P1 | AWS/GCP docs |
 | Load balancers / autoscaling | | ★★★ | P1 | cloud docs |
 
-## 4.7 Performance Engineering & Observability
+## 4.8 Performance Engineering & Observability
 
 | Topic | Subtopic | Diff | Pri | Resource |
 |---|---|---|---|---|
@@ -378,9 +405,81 @@
 | Profiling | CPU, memory, flame graphs | ★★★★ | P1 (P0 HFT) | Brendan Gregg |
 | Benchmarking | load testing | ★★★ | P1 | — |
 | Logging | structured logs | ★★ | P0 | — |
-| Metrics | Prometheus, RED/USE | ★★★ | P0 | prometheus.io |
+| Metrics | Prometheus, RED/USE method | ★★★ | P0 | prometheus.io |
 | Tracing | distributed tracing | ★★★ | P1 | opentelemetry.io |
-| Low-latency (HFT) | cache lines, false sharing, lock-free | ★★★★ | P0 (HFT) | Gregg / talks |
+| Three pillars | metrics + logs + traces | ★★★ | P0 | opentelemetry.io |
+| Four golden signals | latency, traffic, errors, saturation | ★★★ | P0 | Google SRE book |
+| Low-latency (HFT) | cache lines, false sharing, lock-free, NUMA | ★★★★ | P0 (HFT) | Gregg / talks |
+
+## 4.9 Authentication, Authorization & Security
+
+| Topic | Subtopic | Diff | Pri | Resource |
+|---|---|---|---|---|
+| AuthN vs AuthZ | difference (know cold — common interview Q) | ★★ | P0 | Backend roadmap 2026 |
+| Sessions vs tokens | server session vs stateless JWT | ★★★ | P0 | jwt.io |
+| JWT | structure, signing, expiry, refresh tokens | ★★★ | P0 | jwt.io |
+| OAuth 2.0 / OIDC | authorization code flow, scopes | ★★★★ | P0 | oauth.net |
+| Password hashing | bcrypt, argon2, salting (never plain/MD5) | ★★★ | P0 | OWASP |
+| RBAC / ABAC | role vs attribute-based access | ★★★ | P0 | — |
+| API keys & mTLS | service-to-service auth | ★★★ | P1 | — |
+| OWASP Top 10 | injection, XSS, CSRF, SSRF, broken auth | ★★★ | P0 | owasp.org |
+| Input validation | sanitization, parameterized queries | ★★★ | P0 | OWASP |
+| Secrets management | vaults, env, key rotation | ★★★ | P1 | — |
+| TLS / HTTPS | handshake, cert chain, HSTS | ★★★ | P0 | — |
+| Rate limiting & abuse | per-user/IP, DDoS basics | ★★★ | P0 | System Design Primer |
+
+## 4.10 Async Processing & Messaging Patterns
+
+| Topic | Subtopic | Diff | Pri | Resource |
+|---|---|---|---|---|
+| Why async | keep work out of the request path | ★★★ | P0 | Backend roadmap 2026 |
+| Job queues | producers, workers, task queues | ★★★ | P0 | Backend roadmap 2026 |
+| Retries | exponential backoff, jitter | ★★★ | P0 | AWS Builders' Library |
+| Dead letter queues | poison messages | ★★★ | P1 | Confluent docs |
+| Backpressure | flow control under load | ★★★★ | P1 | DDIA |
+| Delayed / scheduled jobs | cron, delayed tasks | ★★ | P1 | — |
+| Idempotent consumers | exactly-once effect | ★★★★ | P0 | DDIA Ch.11 |
+| Event-driven architecture | pub/sub, event sourcing, CQRS | ★★★★ | P1 | DDIA / Martin Fowler |
+| Outbox pattern | reliable event publishing | ★★★★ | P2 | microservices.io |
+
+## 4.11 Microservices & Architecture Patterns
+
+| Topic | Subtopic | Diff | Pri | Resource |
+|---|---|---|---|---|
+| Monolith vs microservices | when to split, tradeoffs | ★★★ | P0 | microservices.io |
+| API gateway | routing, auth, rate limit at edge | ★★★ | P0 | microservices.io |
+| Service discovery | registry, DNS-based | ★★★ | P1 | microservices.io |
+| Circuit breaker | fail fast, fallback | ★★★★ | P0 | microservices.io |
+| Bulkhead & timeout | isolation, graceful degradation | ★★★ | P1 | Release It! (book) |
+| Saga pattern | distributed transactions | ★★★★ | P1 | microservices.io |
+| Sidecar / service mesh | Istio/Envoy concept | ★★★★ | P2 | — |
+| Idempotency & retries | at service boundaries | ★★★ | P0 | Stripe blog |
+| Config & feature flags | runtime toggles | ★★★ | P1 | — |
+
+## 4.12 Reliability & SRE (Google's own framework)
+
+| Topic | Subtopic | Diff | Pri | Resource |
+|---|---|---|---|---|
+| SLI / SLO / Error budget | measure, target, allowance | ★★★ | P0 | Google SRE book (sre.google) |
+| The "nines" | 99.9% = ~43 min/month downtime | ★★★ | P0 | Google SRE book |
+| Burn rate alerting | multi-window (1h + 6h) | ★★★★ | P1 | Google SRE workbook |
+| Postmortems | blameless, root cause | ★★ | P0 | Google SRE book |
+| Deployment strategies | blue-green, canary, rolling | ★★★ | P0 | — |
+| Feature flags | decouple deploy from release | ★★★ | P1 | — |
+| Graceful degradation | fail soft, fallbacks | ★★★ | P0 | Google SRE book |
+| Chaos / fault injection | resilience testing | ★★★★ | P2 | — |
+| Capacity planning | headroom, load forecasting | ★★★ | P1 | Google SRE book |
+
+## 4.13 Testing & Delivery
+
+| Topic | Subtopic | Diff | Pri | Resource |
+|---|---|---|---|---|
+| Unit testing | isolation, mocking | ★★ | P0 | — |
+| Integration testing | service + DB | ★★★ | P0 | — |
+| Contract testing | consumer-driven contracts | ★★★ | P1 | Pact |
+| Load / stress testing | k6, JMeter | ★★★ | P1 | k6.io |
+| CI/CD | pipelines, automated deploy | ★★★ | P0 | — |
+| Test pyramid | unit > integration > e2e | ★★ | P0 | Google Testing Blog |
 
 ---
 
