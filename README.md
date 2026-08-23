@@ -21,6 +21,7 @@
 | CP theory | **cp-algorithms.com** | Free site |
 | CP handbook | **Competitive Programmer's Handbook** — Antti Laaksonen (free PDF) | Book |
 | CP practice | **codeforces.com** + **cses.fi/problemset** | Practice |
+| CP structured | **Codeforces EDU** (edu section — Interactive, constructive, DS) | Course |
 | C++ reference | **cppreference.com** | Docs |
 | Modern C++ | **Effective Modern C++** — Scott Meyers | Book |
 | OS | **OSTEP** (ostep.org, free) | Book |
@@ -44,6 +45,7 @@
 | I/O speed | Fast I/O in C++ | ★ | P0 | cp-algorithms | CF |
 | STL basics | vector, map, set, pair | ★ | P0 | cppreference | CSES Intro |
 | Sorting | comparator, stable sort | ★ | P0 | cp-algorithms | CF |
+| Sort algorithms | merge, quick, counting, radix, heap sort | ★★ | P0 | CP Handbook Ch.3 | CSES |
 
 ## 1.2 Mathematics & Number Theory
 
@@ -53,6 +55,8 @@
 | Modular arithmetic | mod inverse, Fermat | ★★ | P0 | cp-algorithms | CF |
 | Sieve | Eratosthenes, linear sieve | ★★ | P0 | cp-algorithms | CSES |
 | Prime factorization | smallest prime factor | ★★ | P0 | cp-algorithms | CF |
+| Divisors | counting divisors, divisor sum | ★★ | P1 | cp-algorithms | CF |
+| Primality test | trial division, Miller-Rabin | ★★★ | P1 | cp-algorithms | CF |
 | Euler totient | φ(n), properties | ★★ | P1 | cp-algorithms | CF |
 | Modular exponentiation | binary exp | ★★ | P0 | cp-algorithms | CSES |
 | CRT | Chinese Remainder | ★★★ | P2 | cp-algorithms | CF |
@@ -80,6 +84,12 @@
 | Ternary search | unimodal functions | ★★ | P2 | cp-algorithms | CF |
 | Greedy | exchange argument | ★★ | P0 | CP Handbook Ch.6 | CF |
 | Divide & conquer | merge, D&C DP | ★★★ | P1 | cp-algorithms | CF |
+| Backtracking | subsets, permutations, N-Queens, pruning | ★★★ | P0 | CP Handbook | LeetCode |
+| Recursion | recurrence, base cases, recursion tree | ★★ | P0 | CP Handbook | LeetCode |
+| Meet in the middle | split search space | ★★★★ | P2 | cp-algorithms | CF |
+| Ternary search | unimodal functions (standalone) | ★★★ | P2 | cp-algorithms | CF |
+| Constructive algorithms | build a valid answer | ★★★ | P1 | Codeforces EDU | CF |
+| Interactive problems | query-response, adaptive | ★★★ | P2 | Codeforces EDU | CF |
 
 ## 1.5 Data Structures
 
@@ -157,6 +167,8 @@
 | FFT / NTT | polynomial multiply | ★★★★ | P3 | cp-algorithms | CF |
 | Max flow | Dinic, Edmonds-Karp | ★★★★ | P2 | cp-algorithms | CF |
 | Min cut / matching | Hungarian, König | ★★★★ | P3 | cp-algorithms | CF |
+| 2-SAT | implication graph + SCC | ★★★★ | P3 | cp-algorithms | CF |
+| Expression parsing | shunting-yard, recursive descent | ★★★ | P2 | cp-algorithms | CF |
 
 **CP practice ladders:** CSES Problem Set (do fully) · Codeforces problemset filtered by rating · USACO Guide (usaco.guide) · AtCoder Beginner Contests. **Contest cadence:** every Codeforces round + LeetCode weekly.
 
